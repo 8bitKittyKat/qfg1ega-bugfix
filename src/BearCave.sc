@@ -279,9 +279,9 @@
 					)
 					((Said 'cast>')
 						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch spell
+							(DETMAGIC
+								(if (CastSpell spell))
 									(if (Btst fBearGone)
 										(HighPrint 14 27)
 										;There is no magic in the cave.
@@ -289,8 +289,9 @@
 										(HighPrint 14 28)
 										;There is an aura of magic throughout the cavern.  It seems to center on the bear.
 									)
-								)
-								(DAZZLE
+							)
+							(DAZZLE
+								(if (CastSpell spell))
 									(cond 
 										((Btst fBearGone)
 											(HighPrint 14 29)
@@ -300,8 +301,9 @@
 											(= dazzledBear TRUE)
 										)
 									)
-								)
-								(FLAMEDART
+							)
+							(FLAMEDART
+								(if (CastSpell spell))
 									(if (Btst fBearGone)
 										(HighPrint 14 29)
 										;There is no point to that.
@@ -310,8 +312,9 @@
 										(= calmedBear FALSE)
 										(dart setScript: flameDart)
 									)
-								)
-								(CALM
+							)
+							(CALM
+								(if (CastSpell spell))
 									(cond 
 										((Btst fBearGone)
 											(HighPrint 14 29)
@@ -322,8 +325,9 @@
 											(SolvePuzzle f14CalmBear 5)
 										)
 									)
-								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell))
 									(if (Btst fBearGone)
 										(HighPrint 14 29)
 										;There is no point to that.
@@ -331,10 +335,9 @@
 										(HighPrint 14 30)
 										;The magic about the bear's manacle is too great for your Open spell.
 									)
-								)
-								(else
-									(event claimed: FALSE)
-								)
+							)
+							(else
+								(event claimed: FALSE)
 							)
 						)
 					)

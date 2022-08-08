@@ -866,14 +866,15 @@
 						(event claimed: FALSE)
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell)
 									(HighPrint 73 16)
 									;You detect no magic here.
 								)
-								(DAZZLE
+							)
+							(DAZZLE
+								(if (CastSpell spell)
 									(if (CastDazz)
 										(if
 										(or (Btst fBeatBrutus) (== (self script?) nobodyHere))
@@ -884,14 +885,18 @@
 										)
 									)
 								)
-								(FLAMEDART
+							)
+							(FLAMEDART
+								(if (CastSpell spell)
 									(if (or (Btst fBeatBrutus) (== (self script?) nobodyHere))
 										(CastDart 0)
 									else
 										(CastDart brutus)
 									)
 								)
-								(CALM
+							)
+							(CALM
+								(if (CastSpell spell)
 									(HighPrint 73 18)
 									;You've wasted a spell.
 									(if (and (cast contains: brutus) (not (Btst fBeatBrutus)))
@@ -899,13 +904,17 @@
 										;The brigand is too angry to calm.
 									)
 								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell)
 									(HighPrint 73 18)
 									;You've wasted a spell.
 									(HighPrint 73 20)
 									;There's nothing here to open.
 								)
-								(ZAP
+							)
+							(ZAP
+								(if (CastSpell spell)
 									(= zapPower (+ 5 (/ [egoStats ZAP] 10)))
 									(if (or (ego has: iDagger) (ego has: iSword))
 										(HighPrint 73 21)
@@ -915,7 +924,9 @@
 										;You don't seem to have a weapon to charge.
 									)
 								)
-								(FETCH
+							)
+							(FETCH
+								(if (CastSpell spell)
 									(if (or (Btst fBeatBrutus) (== (self script?) nobodyHere))
 										(HighPrint 73 23)
 										;You waste a spell. Fetch is only good for fetching small, visible objects.
@@ -924,10 +935,10 @@
 										;Just wait. The nice brigand will throw you his knife.
 									)
 								)
-								(else
-									(HighPrint 73 25)
-									;That spell is not useful here.
-								)
+							)
+							(else
+								(HighPrint 73 25)
+								;That spell is not useful here.
 							)
 						)
 					)

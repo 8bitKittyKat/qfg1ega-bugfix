@@ -217,31 +217,44 @@
 						)
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell)
 									(if leaderInRoom
 										(HighPrint 97 15)
 										;You sense a strong magical aura on the brigand leader.
-										)
+									)
 									(if (not (ego has: iMagicMirror))
 										(HighPrint 97 16)
 										;The hand mirror on the desk radiates a powerful magical aura.
-										)
+									)
 									(HighPrint 97 17)
 									;You sense magical auras from the large carpet and several other objects in the room, but you don't have time to investigate.
 								)
-								(DAZZLE (CastDazz))
-								(FLAMEDART
+							)
+							(DAZZLE
+								(if (CastSpell spell)
+									(CastDazz)
+								)
+							)
+							(FLAMEDART
+								(if (CastSpell spell)
 									(CastDart 0)
 								)
-								(CALM (CastCalm))
-								(OPEN (CastOpen))
-								(else
-									(HighPrint 97 18)
-									;That spell is useless here.
-									)
+							)
+							(CALM 
+								(if (CastSpell spell)
+									(CastCalm)
+								)
+							)
+							(OPEN
+								(if (CastSpell spell)
+									(CastOpen)
+								)
+							)
+							(else
+								(HighPrint 97 18)
+								;That spell is useless here.
 							)
 						)
 					)

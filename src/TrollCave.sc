@@ -316,33 +316,40 @@
 						)
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell)
 									(HighPrint 88 26)
 									;There is no magic in this cave.
 								)
-								(DAZZLE
+							)
+							(DAZZLE
+								(if (CastSpell spell)
 									(HighPrint 88 27)
 									;There is nothing here to dazzle.
 								)
-								(FLAMEDART
+							)
+							(FLAMEDART
+								(if (CastSpell spell)
 									(HighPrint 88 28)
 									;There is nothing here to use that spell on.
 								)
-								(CALM
+							)
+							(CALM
+								(if (CastSpell spell)
 									(HighPrint 88 29)
 									;There is nothing here to calm.
 								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell)
 									(HighPrint 88 30)
 									;There is nothing here to open.
 								)
-								(else
-									(HighPrint 88 31)
-									;That spell is useless here.
-								)
+							)
+							(else
+								(HighPrint 88 31)
+								;That spell is useless here.
 							)
 						)
 					)

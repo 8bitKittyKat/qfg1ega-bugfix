@@ -323,10 +323,9 @@
 						)
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell)
 									(if Night
 										(HighPrint 64 12)
 										;You sense what nobody needed to tell you:
@@ -336,14 +335,16 @@
 										;You sense a spiritual coldness.
 									)
 								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell)
 									(HighPrint 64 14)
 									;The only things that can be opened here are graves, and you don't want to open THOSE!
 								)
-								(else
-									(HighPrint 64 15)
-									;Your magical abilities are to no avail against the undead.
-								)
+							)
+							(else
+								(HighPrint 64 15)
+								;Your magical abilities are to no avail against the undead.
 							)
 						)
 					)

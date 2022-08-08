@@ -775,11 +775,10 @@
 									vBrigandLeader
 								)
 							)
-							(= spell (SaidSpell event))
-							(if (CastSpell spell)
-								(switch spell
-									(0)
-									(CALM
+							(switch (= spell (SaidSpell event))
+								(0)
+								(CALM
+									(if (CastSpell spell)
 										(if (or monsterChasesEgo (== monsterNum vMantray))
 											(monster setScript: spellDelay 0 22)
 										else
@@ -787,15 +786,21 @@
 											;Although that spell is not useful here, you at least had a chance to practice it.
 										)
 									)
-									(OPEN
+								)
+								(OPEN
+									(if (CastSpell spell)
 										(HighPrint 210 27)
 										;You don't see anything closed around here.
-										)
-									(DETMAGIC
+									)
+								)
+								(DETMAGIC
+									(if (CastSpell spell)
 										(HighPrint 210 28)
 										;You sense no magic here.
-										)
-									(DAZZLE
+									)
+								)
+								(DAZZLE
+									(if (CastSpell spell)
 										(if (or monsterChasesEgo (== monsterNum vMantray))
 											(monster setScript: spellDelay 0 20)
 										else
@@ -803,7 +808,9 @@
 											;Although that spell is not useful here, you at least had a chance to practice it.
 										)
 									)
-									(ZAP
+								)
+								(ZAP
+									(if (CastSpell spell)
 										(= zapPower (+ 5 (/ [egoStats ZAP] 10)))
 										(if (or (ego has: iDagger) (ego has: iSword))
 											(HighPrint 210 29)
@@ -813,7 +820,9 @@
 											;You don't seem to have a weapon to charge.
 										)
 									)
-									(FLAMEDART
+								)
+								(FLAMEDART
+									(if (CastSpell spell)
 										(= theTheSmallMonster 0)
 										(if local8
 											(Face ego monster)
@@ -821,19 +830,21 @@
 										)
 										(CastDart theTheSmallMonster)
 									)
-									(FETCH
+								)
+								(FETCH
+									(if (CastSpell spell)
 										(if local8
 											(HighPrint 210 31)
 											;Certainly you don't want to Fetch THAT!
 											else
 											(HighPrint 210 32)
 											;Good practice, but there's nothing worth Fetching here.
-											)
-									)
-									(else
-										(HighPrint 210 33)
-										;Your spell had no effect.
 										)
+									)
+								)
+								(else
+									(HighPrint 210 33)
+									;Your spell had no effect.
 								)
 							)
 						)

@@ -284,33 +284,40 @@
 						;You hear the constant "drip... drip..." of water.
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell)
 									(HighPrint 89 22)
 									;There is no magic in this cave.
 								)
-								(DAZZLE
+							)
+							(DAZZLE
+								(if (CastSpell spell)
 									(HighPrint 89 23)
 									;There is nothing here to dazzle.
 								)
-								(FLAMEDART
+							)
+							(FLAMEDART
+								(if (CastSpell spell)
 									(HighPrint 89 24)
 									;There is nothing here to use it on.
 								)
-								(CALM
+							)
+							(CALM
+								(if (CastSpell spell)
 									(HighPrint 89 25)
 									;There is nothing here to calm.
 								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell)
 									(HighPrint 89 26)
 									;There is nothing here to open.
 								)
-								(else
-									(HighPrint 89 27)
-									;That spell is useless here.
-								)
+							)
+							(else
+								(HighPrint 89 27)
+								;That spell is useless here.
 							)
 						)
 					)

@@ -1517,16 +1517,17 @@
 							(ego setScript: treeFall)
 							(event claimed: TRUE)
 						else
-							(= spell (SaidSpell event))
-							(if (CastSpell spell)
-								(switch spell
-									(DAZZLE
+							(switch (= spell (SaidSpell event))
+								(DAZZLE
+									(if (CastSpell spell)
 										(CastDazz ego)
 										(if (not (Btst fNestAbandoned))
 											(bird setScript: flyAway)
 										)
 									)
-									(FLAMEDART
+								)
+								(FLAMEDART
+									(if (CastSpell spell)
 										(cond 
 											((== nestState nestInTree)
 												(ego setScript: nestBurn)
@@ -1535,29 +1536,31 @@
 												(HighPrint 54 25)
 											)
 											(else
-												(CastDart 0)
+													(CastDart 0)
 											)
 										)
 									)
-									(FETCH
+								)
+								(FETCH
+									(if (CastSpell spell)
 										(if (and (== nestState nestInTree) (not (Btst fGotRing)))
-											(if
-												(or
-													(== (ego onControl: origin) cLMAGENTA)
-													(== (ego onControl: origin) cYELLOW)
+												(if
+													(or
+														(== (ego onControl: origin) cLMAGENTA)
+														(== (ego onControl: origin) cYELLOW)
+													)
+													(= castingFetch TRUE)
+													(ego setScript: throwIt)
+												else
+													(HighPrint 54 26)
 												)
-												(= castingFetch TRUE)
-												(ego setScript: throwIt)
-											else
-												(HighPrint 54 26)
-											)
 										else
 											(HighPrint 54 27)
 										)
 									)
-									(else
-										(event claimed: FALSE)
-									)
+								)
+								(else
+									(event claimed: FALSE)
 								)
 							)
 						)

@@ -5,6 +5,7 @@
 (use CastDart)
 (use CastOpen)
 (use CastDazz)
+(use CastCalm)
 (use Intrface)
 (use Door)
 (use LoadMany)
@@ -549,18 +550,19 @@
 						)
 					)
 					((Said 'cast>')
-						(= spell (SaidSpell event))
-						(if (CastSpell spell)
-							(switch spell
-								(DETMAGIC
+						(switch (= spell (SaidSpell event))
+							(DETMAGIC
+								(if (CastSpell spell))
 									(Bset fLadderKnown)
 									(ladder setCycle: EndLoop)
-								)
-								(TRIGGER
+							)
+							(TRIGGER
+								(if (CastSpell spell))
 									(Bset fLadderKnown)
 									(ladder setCycle: EndLoop)
-								)
-								(OPEN
+							)
+							(OPEN
+								(if (CastSpell spell))
 									(cond 
 										((Btst fHenryDoorOpen)
 											(HighPrint 82 21)
@@ -581,20 +583,21 @@
 											;The only thing you can open here is the door, and you're not skilled enough to do that.
 										)
 									)
-								)
-								(FLAMEDART
+							)
+							(FLAMEDART
+								(if (CastSpell spell))
 									(CastDart 0)
 									(HighPrint 82 24)
 									;Wheeee!
-								)
-								(DAZZLE
+							)
+							(DAZZLE
+								(if (CastSpell spell))
 									(CastDazz ego)
 									(HighPrint 82 25)
 									;Wow!
-								)
-								(else
-									(event claimed: FALSE)
-								)
+							)
+							(else
+								(event claimed: FALSE)
 							)
 						)
 					)

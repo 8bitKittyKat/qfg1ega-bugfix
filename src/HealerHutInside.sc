@@ -762,10 +762,10 @@
 						)
 					((Said 'cast>')
 						(= spell (SaidSpell event))
-						(if (CastSpell spell)
 							(if (== spell DETMAGIC)
-								(HighPrint 55 94)
-								;There is an aura of magic throughout this small cabin.
+								(if (CastSpell spell)
+									(HighPrint 55 94)
+									;There is an aura of magic throughout this small cabin.
 							else
 								(event claimed: FALSE)
 							)

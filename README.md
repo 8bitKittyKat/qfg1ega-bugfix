@@ -1,0 +1,3 @@
+# Quest for Glory 1 (EGA) - Mana Bugfix
+
+While recently playing through the VGA remake of QFG1, I discovered a bug that occurred in some rooms (and using specific spells) that caused mana usage to be doubled.  Then I discovered it wasn't in just the VGA remake, but it existed in the original EGA version of the game as well.  I poked around at the decompiled source code for both games from EricOakford's [SCI Decompilation Archive](https://github.com/EricOakford/SCI-Decompilation-Archive) and after some digging was able to find the cause, and (for now) have fixed it for the EGA release.  Next I'll be working on a patch for the VGA version.
